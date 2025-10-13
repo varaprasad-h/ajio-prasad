@@ -5,46 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJIO Registration</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 30px; }
-    .form-container {
-      max-width: 400px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin: 12px 0;
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-    button {
-      background: #ff3f6c;
-      border: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
     }
+
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .form-container:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 150px; /* Adjust the size of the logo */
+      height: auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #fafafa;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #ff3f6c;  /* AJIO's main brand color */
+      background-color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #ff3f6c; /* AJIO Ash color */
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
     button:hover {
-      background: #e3355e;
+      background-color: #e3355e; /* Darker shade for hover effect */
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .form-footer a {
+      text-decoration: none;
+      color: #ff3f6c;
+      font-weight: bold;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .separator {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 16px;
+      color: #aaa;
+    }
+
+    .separator span {
+      background: #fff;
+      padding: 0 10px;
     }
   </style>
 </head>
 <body>
 
-<div class="form-container">
-  <h2>Register on AJIO</h2>
-  <form action="/register" method="POST">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="text" name="phone" placeholder="Phone Number" required />
-    <input type="password" name="password" placeholder="Password" required />
-    <button type="submit">Submit</button>
-  </form>
-</div>
+  <div class="form-container">
+    <!-- Embed the AJIO logo using base64 -->
+    <img src="data:image/png;base64,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" alt="AJIO Logo" class="logo">
+    
+    <h2>Register on AJIO</h2>
+    <form action="/register" method="POST">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Full Name" required />
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Email Address" required />
+      </div>
+      <div class="form-group">
+        <input type="text" name="phone" placeholder="Phone Number" required />
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Password" required />
+      </div>
+      <button type="submit">Register</button>
+      <div class="separator"><span>OR</span></div>
+      <div class="form-footer">
+        <p>Already have an account? <a href="/login">Login here</a></p>
+      </div>
+    </form>
+  </div>
 
 </body>
 </html>

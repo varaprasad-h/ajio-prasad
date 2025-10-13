@@ -14,7 +14,7 @@ app.use(express.static('public'));
 // Handle form submission, forward data to API Gateway
 app.post('/submit', async (req, res) => {
   const userData = req.body;
-  const apiGatewayUrl = 'https://<YOUR_API_GATEWAY_ID>.execute-api.<region>.amazonaws.com/register'; // CHANGE THIS
+  const apiGatewayUrl = 'https://bolnp0se1m.execute-api.eu-north-1.amazonaws.com/prod'; // CHANGE THIS
 
   try {
     const response = await fetch(apiGatewayUrl, {
